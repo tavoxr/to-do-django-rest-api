@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import TaskSerializer
+from .serializers import TaskSerializer, TaskCreateSerializer
 
 # Create your views here.
 
@@ -29,5 +29,51 @@ def taskList(request):
     serializer = TaskSerializer(tasks, many = True)
 
     return Response(serializer.data, status = status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def taskDetail(request, id):
+
+    
+    try:
+        task = Task.objects.get(id = id)
+        print('task', task)
+        serializer = TaskSerializer(task)
+
+        return Response(serializer.data, status = status.HTTP_200_OK)
+    except :
+        return Response('Task doesn\'t exist')
+
+@api_view(['POST'])
+def taskCreate(request):
+
+    name = request.data['name']
+    print('request.data', name )
+    try:
+        serializer = TaskCreateSerializer(data = request.data)
+
+        if serializer.is_valid():
+            serializer.save()    
+        
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+    except:
+            
+        
+        return Response('Data not vald')
+
+@api_view(['PUT'])
+def taskUpdate(request, id):
+
+    try:
+        task = Task.objects.get(id = id)
+        serializer = TaskCreateSerializer(data = request.data, instance = task )
+
+        if serializer.is_valid():
+            serializer.save()
+
+        return Response(serializer.data, status = status.HTTP_200_OK)
+        
+    except:
+        return Response('Data not valid')
 
 
