@@ -77,3 +77,20 @@ def taskUpdate(request, id):
         return Response('Data not valid')
 
 
+
+@api_view(['DELETE'])
+def taskDelete(request, id):
+
+    try:
+        task = Task.objects.get(id = id)
+        task.delete()
+    
+        return Response('Task Deleted')
+    
+    except:
+        return Response('Error, task coudn\'t be deleted')
+
+
+
+
+

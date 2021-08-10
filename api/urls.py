@@ -9,4 +9,5 @@ urlpatterns = [
     path('task-detail/<int:id>/', taskDetail, name='task-detail'),
     path('task-create/', taskCreate, name='task-create'),
     path('task-update/<int:id>/', taskUpdate, name='task-update'),
+    path('task-delete/<int:id>/', taskDelete, name='task-delete'),
 ]
