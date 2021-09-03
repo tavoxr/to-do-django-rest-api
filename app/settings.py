@@ -13,13 +13,11 @@ import os
 import environ
 
 # Initialize enviroment
-env = environ.Env(
-    DEBUG=(bool, False)
-)
+env = environ.Env()
 environ.Env.read_env()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", False)
+DEBUG = False
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
