@@ -37,7 +37,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['to-do-drf-api.herokuapp.com', '127.0.0.1:8000', 'localhost']
 
 
 # Application definition
@@ -169,5 +169,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://192.168.1.12:3000"
+    "http://192.168.1.12:3000",
+    "https://to-do-react-django.netlify.app"
 ]
